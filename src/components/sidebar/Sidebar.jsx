@@ -1,8 +1,9 @@
 import React from 'react'
 import "./sidebar.css"
-import {RssFeed, Chat, PlayCircle,Group,Bookmarks,HelpOutline,WorkOutline, Event,School, Book, Work } from "@mui/icons-material"
+import {RssFeed, Chat, PlayCircle,Group,Bookmarks,HelpOutline,WorkOutline, Event,School} from "@mui/icons-material"
 const Sidebar = () => {
   return (
+
     <div className='sidebar'>
       <div className="sidebarWrapper">
         <ul className="sidebarList">
@@ -82,27 +83,10 @@ const Sidebar = () => {
               Jane Doe
             </span>
           </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
         </ul>
       </div>
     </div>
+   
   )
 }
 

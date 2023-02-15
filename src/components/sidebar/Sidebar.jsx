@@ -1,5 +1,7 @@
 import React from 'react'
 import "./sidebar.css"
+import CloseFriend from '../closeFriend/CloseFriend'
+import {Users} from '../../dummydata'
 import {RssFeed, Chat, PlayCircle,Group,Bookmarks,HelpOutline,WorkOutline, Event,School} from "@mui/icons-material"
 const Sidebar = () => {
   return (
@@ -47,42 +49,9 @@ const Sidebar = () => {
         <button className="sidebarButton">Show More</button>
         <hr className='sidebarHr'/>
         <ul className="sidebarFriendList">
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
-          <li className="sidebarFriend">
-            <img className="sidebarFriendImg" src="/assets/person/2.jpeg" alt="" />
-            <span className="sidebarFriendName">
-              Jane Doe
-            </span>
-          </li>
+         {Users.map((u) => (
+          <CloseFriend key={u.id} user={u}/>
+         ))}
         </ul>
       </div>
     </div>

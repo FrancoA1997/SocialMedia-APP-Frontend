@@ -24,6 +24,7 @@ margin: 30px 0;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid rgb(32, 70, 103);
 }
 .postText{
     margin-left: 10px;

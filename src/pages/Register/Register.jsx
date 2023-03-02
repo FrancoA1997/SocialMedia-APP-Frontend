@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useRef } from 'react'
 import './register.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';

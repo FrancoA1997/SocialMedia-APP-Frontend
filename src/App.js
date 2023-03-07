@@ -13,7 +13,6 @@ import { AuthContext } from './context/AuthContext';
 import Messenger from './pages/messenger/Messenger';
 function App()  {
   const {user} = useContext(AuthContext);
-  console.log(user + 'app.js')
   return(
         <BrowserRouter>
         <Routes>

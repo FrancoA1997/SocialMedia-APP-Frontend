@@ -3,9 +3,9 @@ import React from "react";
 import AuthReducer from "./AuthReducer";
 const INITIAL_STATE = {
     user: {
-        _id: "64010406432fb3cdb576b18d",
-        username: "test",
-        email: "test@gmail.com",
+        _id: "63e6bb99eb596d5c4a550481",
+        username: "John",
+        email: "John@gmail.com",
         profilePicture: "person/1.jpeg",
         coverPicture: "",
         isAdmin: false,

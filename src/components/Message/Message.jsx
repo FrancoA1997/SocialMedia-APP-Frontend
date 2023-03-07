@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './message.css'
-const Message = ({own}) => {
+import {format} from 'timeago.js'
+import { AuthContext } from '../../context/AuthContext';
+import axios from 'axios';
+const Message = ({message, own, members}) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const {user: currentUser} = useContext(AuthContext);
+    const friendId = members.find((m) => m !== currentUser._id)
+    const [chatUser, setChatUser] = useState();
+
+    useEffect(() => {
+      const getChatUser= async () => {
+        try{
+          const res = await axios.get("/users?userId=" + friendId)
+          setChatUser(res.data);
+        }catch(err){
+          console.log(err)
+        }
+      }
+    getChatUser()
+    },[friendId])
+   
+
   return (
     <div className={own ? "message own" : "message"}>
-        <div className="messageTop">
-        <img src={PF + "/person/1.jpeg"} alt="" className="messageImg" />
-        <p className='messageText'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div className="messageTop">{ own 
+        ? <img src={currentUser?.profilePicture ? PF + currentUser?.profilePicture : PF + "/person/noAvatar.png"} alt="" className="messageImg" />
+        : <img src={chatUser?.profilePicture ? PF + chatUser?.profilePicture : PF + "/person/noAvatar.png"} alt="" className="messageImg" />
+        }
+        <p className='messageText'>{message.text}</p>
         </div>
         <div className="messageBottom">
-            1 hour ago
+           {format(message.createdAt)}
         </div>
 
     </div>

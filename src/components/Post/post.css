@@ -11,12 +11,14 @@ margin: 30px 0;
 .postTop{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
-.postLeft{
+.postTopLeft{
     display: flex;
-    align-items: center;
-
+    align-items: start;
+    flex-direction: column;
+    justify-content: baseline;
+    margin-left: 10px;
 }
 
 .postProfileImg{
@@ -31,11 +33,13 @@ margin: 30px 0;
     font-weight: 400;
     font-size: 20px;
 }
-
+.postTopRight{
+    margin-left: auto;
+}
 .postUsername{
     font-size: 15px;
     font-weight: 500;
-    margin: 0 10px;
+   
 }
 .postDate{
     font-size: 12px;

@@ -10,7 +10,10 @@ const Conversation = ({conversation, currentUser}) => {
     const friendId = conversation.members.find((m) => m !== currentUser._id)
     const getUser = async () =>{
       try{
-        const res = await axios.get("/users?userId=" + friendId);
+        const res = await axios.get("/users?userId=" + friendId, {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
+        });
         setUserFriend(res.data);
 
       }catch(err){

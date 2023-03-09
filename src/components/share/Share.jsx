@@ -27,14 +27,20 @@ const Share = () => {
             data.append("file", file);
             newPost.img = fileName;         
                try{
-                await axios.post("/upload" , data);
+                await axios.post("/upload" , data, {
+                    headers: {authorization: "Bearer " + user.accessToken},
+            
+                  });
                 window.location.reload();
             }catch(err){
                 console.log(err);
             }
         }
         try{
-         await axios.post("/posts", newPost);
+         await axios.post("/posts", newPost, {
+          headers: {authorization: "Bearer " + user.accessToken},
+  
+        });
         }catch(err){
             console.log(err);
         };

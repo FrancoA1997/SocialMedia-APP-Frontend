@@ -45,7 +45,10 @@ const Messenger = () => {
   useEffect(() =>{
     const getConversations = async () =>{
       try{
-        const response = await axios.get("/conversation/" + user._id);
+        const response = await axios.get("/conversation/" + user._id, {
+          headers: {authorization: "Bearer " + user.accessToken},
+  
+        });
         setConversations(response.data);
       }catch(err){
         console.log(err);
@@ -58,7 +61,10 @@ const Messenger = () => {
   useEffect(() => {
     const getMessages = async () => {
       try{
-        const res = await axios.get("/message/"+ currentChat?._id)
+        const res = await axios.get("/message/"+ currentChat?._id,{
+          headers: {authorization: "Bearer " + user.accessToken},
+  
+        })
         setMessages(res.data)
       }catch(err){
         console.log(err)
@@ -81,7 +87,10 @@ const Messenger = () => {
       text: newMessages,
     })
     try{
-      const res = await axios.post("/message/", message)
+      const res = await axios.post("/message/", message, {
+        headers: {authorization: "Bearer " + user.accessToken},
+
+      })
       setMessages([...messages, res.data]);
       setNewMessages("")
     }catch(err){

@@ -3,10 +3,27 @@ import "./topbar.css"
 import {Search, Person, Chat, Notifications} from "@mui/icons-material"
 import {Link} from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
+import axios from 'axios'
 
 const Topbar = () => {
   const {user} = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const logoutHandler = async (e) => {
+    e.preventDefault()
+    try{
+      axios.post("/auth/logout", {
+        token : user.refreshToken
+      }, {
+        headers: {authorization: "Bearer " + user.accessToken},
+
+      });
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
@@ -23,8 +40,9 @@ const Topbar = () => {
       </div>
       <div className='topbarRight'>
         <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Timeline</span>
+        
+          <span className="topbarLink" onClick={logoutHandler}>Logout</span>
+          
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">

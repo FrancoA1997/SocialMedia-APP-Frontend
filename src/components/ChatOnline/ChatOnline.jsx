@@ -9,7 +9,10 @@ const ChatOnline = ({onlineUsers ,setCurrentChat }) => {
     const [onlineFriends, setOnlineFriends] = useState([]);
     const handleClick = async (user) =>{
       try{
-        const res = await axios.get(`/conversation/find/${user._id}/${currentUser._id}`)
+        const res = await axios.get(`/conversation/find/${user._id}/${currentUser._id}`, {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
+        })
         setCurrentChat(res.data);
       }catch(err){
         console.log(err)
@@ -17,7 +20,10 @@ const ChatOnline = ({onlineUsers ,setCurrentChat }) => {
     }
     useEffect(() => {
       const getFriends = async () => {
-        const res = await axios.get("/users/friends/" + currentUser._id)
+        const res = await axios.get("/users/friends/" + currentUser._id , {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
+        })
         setFriends(res.data)
       }
       getFriends();

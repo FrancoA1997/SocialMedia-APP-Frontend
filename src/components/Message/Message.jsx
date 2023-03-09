@@ -12,7 +12,10 @@ const Message = ({message, own, members}) => {
     useEffect(() => {
       const getChatUser= async () => {
         try{
-          const res = await axios.get("/users?userId=" + friendId)
+          const res = await axios.get("/users?userId=" + friendId, {
+            headers: {authorization: "Bearer " + currentUser.accessToken},
+    
+          })
           setChatUser(res.data);
         }catch(err){
           console.log(err)

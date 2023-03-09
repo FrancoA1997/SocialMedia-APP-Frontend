@@ -35,6 +35,15 @@ const AuthReducer =(state, action) => {
                                   ),
                                 },
                               };
+                              case "REFRESH_TOKEN":
+                                return {
+                                    ...state,
+                                    user:{
+                                        ...state.user,
+                                        accessToken: action.payload.token,
+                                        refreshToken: action.payload.refreshToken,
+                                    },
+                                }
                 default:
                     return state;
     }

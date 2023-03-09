@@ -13,8 +13,6 @@ const Home = () => {
         <Feed />
         <Rightbar />
       </div>
-
-
     </>
   )
 }

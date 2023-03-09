@@ -25,3 +25,8 @@ export const Unfollow = (userId) =>({
     payload: userId,
  
 });
+export const refreshToken = (token, refreshToken) =>({
+    type: "REFRESH_TOKEN",
+    payload: token,
+    refreshToken,
+});

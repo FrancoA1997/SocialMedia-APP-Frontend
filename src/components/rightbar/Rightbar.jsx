@@ -7,46 +7,55 @@ import Online from '../Online/Online'
 import axios from 'axios'
 import "./rightbar.css"
 
-const Rightbar = ({user}) => {
+const Rightbar = ({userFriend}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends ] = useState([])
   const {user: currentUser, dispatch} = useContext(AuthContext);
   const [followed, setFollowed] = useState(
-    currentUser.following.includes(user?.id)
+    currentUser.following?.includes(userFriend?._id)
     );
-
+    
   
   useEffect(() => {
     const getFriends = async () => {
       try{
-        const friendList = await axios.get("/users/friends/"+ user._id);
+        const friendList = await axios.get("/users/friends/" + userFriend._id, {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
+        });
         setFriends(friendList.data);
       }catch(err){
         console.log(err)
       }
     };
     getFriends();
-  }, [user])
+  }, [userFriend])
 
 
   const followHandle = async () =>{
     try{
       if(followed){
-        await axios.put("/users/"+user._id+"/unfollow", {
+        await axios.put("/users/"+userFriend._id+"/unfollow", {
           userId: currentUser._id
+        }, {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
         });
         dispatch({
           type: "UNFOLLOW",
-          payload: user._id
+          payload: userFriend._id
 
         });
       }else{
-        await axios.put("/users/"+user._id+"/follow",  {
+        await axios.put("/users/"+userFriend._id+"/follow",  {
           userId: currentUser._id
+        }, {
+          headers: {authorization: "Bearer " + currentUser.accessToken},
+  
         });
         dispatch({
           type: "FOLLOW",
-          payload: user._id
+          payload: userFriend._id
         });
       }
     }catch(err){
@@ -76,7 +85,7 @@ const Rightbar = ({user}) => {
   const ProfileRightbar = () =>{
     return(
     <>
-    {user.username !== currentUser.username && (
+    {userFriend.username !== currentUser.username && (
       <button className='rightbarFollowButton' onClick={followHandle}>
         {followed ? "Unfollow" : "Follow" }
         {followed ? <Remove/> :  <Add/> }
@@ -86,18 +95,18 @@ const Rightbar = ({user}) => {
     <div className="rightbarInfo">
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">City:</span>
-        <span className="rightbarInfoValue">{user.city}</span>
+        <span className="rightbarInfoValue">{userFriend.city}</span>
       </div>
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">Country:</span>
-        <span className="rightbarInfoValue">{user.from}</span>
+        <span className="rightbarInfoValue">{userFriend.from}</span>
       </div>
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">Relationship:</span>
         <span className="rightbarInfoValue">
-      {user.relationship === 1 
+      {userFriend.relationship === 1 
         ?  "Single" 
-        : user.relationship === 2 
+        : userFriend.relationship === 2 
         ? "Married" 
         : "-" }
         </span>
@@ -108,7 +117,7 @@ const Rightbar = ({user}) => {
         {friends.map((friend) => (
             <Link to={"/profile/" + friend.username} style={{textDecoration: "none"}}>
           <div className="rightbarFollowing">
-          <img src={friend.profilePicture ? friend.profilePicture : PF +"person/noAvatar.png"} alt="" className="rightbarFollowingImg" />
+          <img src={friend.profilePicture ? PF + friend.profilePicture : PF +"person/noAvatar.png"} alt="" className="rightbarFollowingImg" />
         <span className="rightbarFollowingName">{friend.username}</span>
         </div>
    </Link>
@@ -122,7 +131,7 @@ const Rightbar = ({user}) => {
   return (
     <div className='rightbar'>
       <div className="rightbarWrapper">
-     {user ? <ProfileRightbar/> : <HomeRightbar/>}
+     {userFriend ? <ProfileRightbar/> : <HomeRightbar/>}
       </div>
     </div>
   )

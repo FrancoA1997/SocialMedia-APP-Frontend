@@ -21,7 +21,10 @@ const Post = ({Post}) => {
  );
  useEffect( () =>{
     const fetchUser = async() =>{
-      const res = await axios.get(`/users?userId=${Post.userId}`)
+      const res = await axios.get(`/users?userId=${Post.userId}`, {
+        headers: {authorization: "Bearer " + currentUser.accessToken},
+
+      });
       setUser(res.data);
     }
     fetchUser();
@@ -29,7 +32,10 @@ const Post = ({Post}) => {
 
  const likeHandler = async () =>{
     try{
-     await axios.put("/posts/" + Post._id + "/like", {userId: currentUser._id})
+     await axios.put("/posts/" + Post._id + "/like", {userId: currentUser._id}, {
+        headers: {authorization: "Bearer " + currentUser.accessToken},
+
+      })
     }catch(err){
 
     }
@@ -41,12 +47,13 @@ const Post = ({Post}) => {
     <div className='post'>
         <div className="postWrapper">
             <div className="postTop">
-                <div className="postTopLeft">
-                    <Link to={`profile/${user.username}`}>
+            <Link to={`profile/${user.username}`}>
                     <img src={ user.profilePicture ? PF + user.profilePicture : PF+"person/noAvatar.png" } className='postProfileImg' alt="" />
                     </Link>
+                <div className="postTopLeft">
                     <span className="postUsername">{user.username}</span>
                     <span className="postDate">{format(Post.createdAt)}</span>
+                    
                 </div>
                 <div className="postTopRight">
                     <MoreVert/>

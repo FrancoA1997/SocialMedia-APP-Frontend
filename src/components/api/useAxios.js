@@ -16,7 +16,7 @@ const useAxios = () => {
         let currentDate = new Date();
         const decodedToken = jwt_decode(user.accessToken);
         if(decodedToken.exp * 1000 < currentDate.getTime()){
-          const res = await axios.post("auth/refresh", {token : user.refreshToken})
+          const res = await axios.post("/auth/refresh", {token : user.refreshToken})
          if(res)
          dispatch({
             type: "REFRESH_TOKEN",

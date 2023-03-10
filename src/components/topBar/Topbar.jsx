@@ -3,20 +3,16 @@ import "./topbar.css"
 import {Search, Person, Chat, Notifications} from "@mui/icons-material"
 import {Link} from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
-import axios from 'axios'
-
+import useAxios from '../api/useAxios'
 const Topbar = () => {
   const {user} = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
+  const api = useAxios()
   const logoutHandler = async (e) => {
     e.preventDefault()
     try{
-      axios.post("/auth/logout", {
+      api.post("/auth/logout", {
         token : user.refreshToken
-      }, {
-        headers: {authorization: "Bearer " + user.accessToken},
-
       });
     }catch(err){
       console.log(err)

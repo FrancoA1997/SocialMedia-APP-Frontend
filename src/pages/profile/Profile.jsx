@@ -4,24 +4,19 @@ import Feed from '../../components/feed/Feed';
 import Sidebar from "../../components/sidebar/Sidebar"
 import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from 'react';
-import axios from 'axios'
 import {useParams} from 'react-router'
-
+import useAxios from '../../components/api/useAxios'
 import './profile.css'
-import { AuthContext } from '../../context/AuthContext';
+
 const Profile = () => {
   const [userFriend, setUserFriend] = useState({});
   const username = useParams().username;
-  const {user: currentUser} = useContext(AuthContext)
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  console.log(username, "<- username")
+  const api = useAxios()
 
   useEffect( () =>{
     const fetchUser = async() =>{
-      const res = await axios.get("/users?username=" + username ,{
-        headers: {authorization: "Bearer " + currentUser.accessToken},
-
-      })
+      const res = await api.get("/users?username=" + username)
       setUserFriend(res.data);
     }
     fetchUser();

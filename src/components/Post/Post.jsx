@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import "./post.css"
 import { MoreVert } from '@mui/icons-material'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+
+import useAxios from '../api/useAxios'
 import {format} from 'timeago.js'
 import {Link} from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
@@ -13,7 +14,7 @@ const Post = ({Post}) => {
  const [isLiked, setIsLiked] = useState(false);
  const [user, setUser] = useState({});
  const { user: currentUser } = useContext(AuthContext);
- 
+ const api = useAxios()
 
  useEffect(() =>{
     setIsLiked(Post.likes.includes(currentUser._id))
@@ -21,10 +22,7 @@ const Post = ({Post}) => {
  );
  useEffect( () =>{
     const fetchUser = async() =>{
-      const res = await axios.get(`/users?userId=${Post.userId}`, {
-        headers: {authorization: "Bearer " + currentUser.accessToken},
-
-      });
+      const res = await api.get(`/users?userId=${Post.userId}`);
       setUser(res.data);
     }
     fetchUser();
@@ -32,10 +30,7 @@ const Post = ({Post}) => {
 
  const likeHandler = async () =>{
     try{
-     await axios.put("/posts/" + Post._id + "/like", {userId: currentUser._id}, {
-        headers: {authorization: "Bearer " + currentUser.accessToken},
-
-      })
+     await api.put("/posts/" + Post._id + "/like", {userId: currentUser._id})
     }catch(err){
 
     }

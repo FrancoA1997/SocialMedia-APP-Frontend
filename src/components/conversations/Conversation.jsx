@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import "./conversation.css"
-import axios from 'axios';
+import useAxios from '../api/useAxios'
 const Conversation = ({conversation, currentUser}) => {
     const [userFriend, setUserFriend] = useState(null)
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-   
+    const api = useAxios()
 
   useEffect(()=>{
     const friendId = conversation.members.find((m) => m !== currentUser._id)
     const getUser = async () =>{
       try{
-        const res = await axios.get("/users?userId=" + friendId, {
-          headers: {authorization: "Bearer " + currentUser.accessToken},
-  
-        });
+        const res = await api.get("/users?userId=" + friendId);
         setUserFriend(res.data);
 
       }catch(err){

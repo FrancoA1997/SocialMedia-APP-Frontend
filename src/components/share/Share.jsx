@@ -4,9 +4,11 @@ import {PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 import CloseIcon from '@mui/icons-material/Close';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { AuthContext } from '../../context/AuthContext'
-import axios from 'axios'
+
+import useAxios from '../api/useAxios'
 
 const Share = () => {
+    const api = useAxios()
     const {user} = useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const desc = useRef()
@@ -27,20 +29,14 @@ const Share = () => {
             data.append("file", file);
             newPost.img = fileName;         
                try{
-                await axios.post("/upload" , data, {
-                    headers: {authorization: "Bearer " + user.accessToken},
-            
-                  });
+                await api.post("/upload" , data);
                 window.location.reload();
             }catch(err){
                 console.log(err);
             }
         }
         try{
-         await axios.post("/posts", newPost, {
-          headers: {authorization: "Bearer " + user.accessToken},
-  
-        });
+         await api.post("/posts", newPost);
         }catch(err){
             console.log(err);
         };

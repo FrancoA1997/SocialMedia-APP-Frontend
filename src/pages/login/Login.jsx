@@ -1,9 +1,10 @@
 import React from 'react'
 import { useRef } from 'react';
 import './login.css'
-import {loginCall} from '../../apiCalls'
+import { loginCall } from '../../components/api/loginCall'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+
 import CircularProgress from '@mui/material/CircularProgress';
 const Login = () => {
     const logoBeggining = "</>";

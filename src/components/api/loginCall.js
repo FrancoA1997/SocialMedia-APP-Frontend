@@ -1,6 +1,5 @@
-import axios from 'axios'
-
-
+import axios from "axios";
+axios.interceptors.request.clear();
 export const loginCall = async (userCredentials, dispatch) =>{
     dispatch({type:"LOGIN_START"});
     try{

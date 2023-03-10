@@ -26,7 +26,7 @@ function App()  {
          />
          <Route
          path='/login'
-         element={user ? <Navigate to='/messenger'/>  : <Login/>}
+         element={user ? <Navigate to='/'/>  : <Login/>}
          />
         <Route
          path='/register'

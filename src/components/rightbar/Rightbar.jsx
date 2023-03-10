@@ -4,10 +4,12 @@ import { AuthContext } from '../../context/AuthContext'
 import { Add, Remove } from '@mui/icons-material'
 import { Users } from '../../dummydata'
 import Online from '../Online/Online'
-import axios from 'axios'
+
+import useAxios from '../api/useAxios'
 import "./rightbar.css"
 
 const Rightbar = ({userFriend}) => {
+  const api = useAxios()
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends ] = useState([])
   const {user: currentUser, dispatch} = useContext(AuthContext);
@@ -19,10 +21,7 @@ const Rightbar = ({userFriend}) => {
   useEffect(() => {
     const getFriends = async () => {
       try{
-        const friendList = await axios.get("/users/friends/" + userFriend._id, {
-          headers: {authorization: "Bearer " + currentUser.accessToken},
-  
-        });
+        const friendList = await api.get("/users/friends/" + userFriend._id);
         setFriends(friendList.data);
       }catch(err){
         console.log(err)
@@ -35,11 +34,8 @@ const Rightbar = ({userFriend}) => {
   const followHandle = async () =>{
     try{
       if(followed){
-        await axios.put("/users/"+userFriend._id+"/unfollow", {
+        await api.put("/users/"+userFriend._id+"/unfollow", {
           userId: currentUser._id
-        }, {
-          headers: {authorization: "Bearer " + currentUser.accessToken},
-  
         });
         dispatch({
           type: "UNFOLLOW",
@@ -47,11 +43,8 @@ const Rightbar = ({userFriend}) => {
 
         });
       }else{
-        await axios.put("/users/"+userFriend._id+"/follow",  {
+        await api.put("/users/"+userFriend._id+"/follow",  {
           userId: currentUser._id
-        }, {
-          headers: {authorization: "Bearer " + currentUser.accessToken},
-  
         });
         dispatch({
           type: "FOLLOW",

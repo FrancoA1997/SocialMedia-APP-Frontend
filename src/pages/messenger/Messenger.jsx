@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext'
 import Message from '../../components/Message/Message'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import Topbar from '../../components/topBar/Topbar'
-import axios from 'axios'
+import useAxios from '../../components/api/useAxios'
 import './messenger.css'
 import {io} from "socket.io-client"
 
@@ -18,6 +18,7 @@ const Messenger = () => {
   const [onlineUsers, setOnlineUsers] = useState([])
   const [arrivalmessage, setArrivalmessage] = useState(null);
   const socket = useRef();
+  const api = useAxios()
 
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
@@ -32,7 +33,7 @@ const Messenger = () => {
   useEffect(() => {
     arrivalmessage && currentChat?.members.includes(arrivalmessage.sender) &&
     setMessages((prev) => [...messages, arrivalmessage ])
-  },[arrivalmessage, currentChat])
+  },[arrivalmessage, currentChat, messages])
 
 
   useEffect(()=> {
@@ -45,10 +46,7 @@ const Messenger = () => {
   useEffect(() =>{
     const getConversations = async () =>{
       try{
-        const response = await axios.get("/conversation/" + user._id, {
-          headers: {authorization: "Bearer " + user.accessToken},
-  
-        });
+        const response = await api.get("/conversation/" + user._id);
         setConversations(response.data);
       }catch(err){
         console.log(err);
@@ -61,10 +59,7 @@ const Messenger = () => {
   useEffect(() => {
     const getMessages = async () => {
       try{
-        const res = await axios.get("/message/"+ currentChat?._id,{
-          headers: {authorization: "Bearer " + user.accessToken},
-  
-        })
+        const res = await api.get("/message/"+ currentChat?._id)
         setMessages(res.data)
       }catch(err){
         console.log(err)
@@ -87,7 +82,7 @@ const Messenger = () => {
       text: newMessages,
     })
     try{
-      const res = await axios.post("/message/", message, {
+      const res = await api.post("/message/", message, {
         headers: {authorization: "Bearer " + user.accessToken},
 
       })

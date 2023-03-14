@@ -8,47 +8,62 @@ import Online from '../Online/Online'
 import useAxios from '../api/useAxios'
 import "./rightbar.css"
 
-const Rightbar = ({userFriend}) => {
+const Rightbar = ({user}) => {
   const api = useAxios()
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends ] = useState([])
   const {user: currentUser, dispatch} = useContext(AuthContext);
-  const [followed, setFollowed] = useState(
-    currentUser.following?.includes(userFriend?._id)
-    );
-    
-  
+  const [followed, setFollowed] = useState(false);
+
+   ///Sets if the current user is following the current profile 
   useEffect(() => {
-    const getFriends = async () => {
+    const isFollowing = () => {
+      setFollowed(currentUser.following?.includes(user?._id))
+    }
+    isFollowing()
+  },[user, currentUser])
+    
+    
+  ///Get friends depending if the user is on the feed or profile page
+  useEffect(() => {
+    const getProfileFriends = async () => {
       try{
-        const friendList = await api.get("/users/friends/" + userFriend._id);
+        const friendList = await api.get("/users/friends/" + user?._id);
         setFriends(friendList.data);
       }catch(err){
-        console.log(err)
+        console.log("No user yet to be fetched")
       }
     };
-    getFriends();
-  }, [userFriend])
+    const getFeedFriends = async () => {
+      try{
+        const friendList = await api.get("/users/friends/" + currentUser?._id);
+        setFriends(friendList.data);
+      }catch(err){
+        console.log("No user yet to be fetched")
+      }
+    };
+    user ? getProfileFriends() : getFeedFriends()
+  }, [user, currentUser])
 
-
+// Function that handle following state on the client and server side
   const followHandle = async () =>{
     try{
       if(followed){
-        await api.put("/users/"+userFriend._id+"/unfollow", {
+        await api.put("/users/"+user._id+"/unfollow", {
           userId: currentUser._id
         });
         dispatch({
           type: "UNFOLLOW",
-          payload: userFriend._id
+          payload: user._id
 
         });
       }else{
-        await api.put("/users/"+userFriend._id+"/follow",  {
+        await api.put("/users/"+user._id+"/follow",  {
           userId: currentUser._id
         });
         dispatch({
           type: "FOLLOW",
-          payload: userFriend._id
+          payload: user._id
         });
       }
     }catch(err){
@@ -67,8 +82,11 @@ const Rightbar = ({userFriend}) => {
         <img src={`${PF}ad.png`} alt="" className="rightbarAd" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          {Users.map((u) =>(
+          
+          {friends.map((u) =>(
+            <Link to={"/profile/" + u.username} style={{textDecoration: "none"}}>
             <Online key={u.id} user={u}/>
+            </Link>
           ))}
         </ul>
     </>
@@ -78,7 +96,7 @@ const Rightbar = ({userFriend}) => {
   const ProfileRightbar = () =>{
     return(
     <>
-    {userFriend.username !== currentUser.username && (
+    {user.username !== currentUser.username && (
       <button className='rightbarFollowButton' onClick={followHandle}>
         {followed ? "Unfollow" : "Follow" }
         {followed ? <Remove/> :  <Add/> }
@@ -88,18 +106,18 @@ const Rightbar = ({userFriend}) => {
     <div className="rightbarInfo">
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">City:</span>
-        <span className="rightbarInfoValue">{userFriend.city}</span>
+        <span className="rightbarInfoValue">{user.city}</span>
       </div>
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">Country:</span>
-        <span className="rightbarInfoValue">{userFriend.from}</span>
+        <span className="rightbarInfoValue">{user.from}</span>
       </div>
       <div className="rightbarInfoItem">
         <span className="rightbarInfoKey">Relationship:</span>
         <span className="rightbarInfoValue">
-      {userFriend.relationship === 1 
+      {user.relationship === 1 
         ?  "Single" 
-        : userFriend.relationship === 2 
+        : user.relationship === 2 
         ? "Married" 
         : "-" }
         </span>
@@ -124,7 +142,7 @@ const Rightbar = ({userFriend}) => {
   return (
     <div className='rightbar'>
       <div className="rightbarWrapper">
-     {userFriend ? <ProfileRightbar/> : <HomeRightbar/>}
+     {user ? <ProfileRightbar/> : <HomeRightbar/>}
       </div>
     </div>
   )

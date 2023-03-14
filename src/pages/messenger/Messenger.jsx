@@ -30,6 +30,7 @@ const Messenger = () => {
       });
     });
   },[]);
+  
   useEffect(() => {
     arrivalmessage && currentChat?.members.includes(arrivalmessage.sender) &&
     setMessages((prev) => [...messages, arrivalmessage ])
@@ -82,10 +83,7 @@ const Messenger = () => {
       text: newMessages,
     })
     try{
-      const res = await api.post("/message/", message, {
-        headers: {authorization: "Bearer " + user.accessToken},
-
-      })
+      const res = await api.post("/message/", message)
       setMessages([...messages, res.data]);
       setNewMessages("")
     }catch(err){

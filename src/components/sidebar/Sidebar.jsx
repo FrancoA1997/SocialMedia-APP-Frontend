@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./sidebar.css"
 import CloseFriend from '../closeFriend/CloseFriend'
-import {Users} from '../../dummydata'
+import useAxios from '../api/useAxios';
 import {RssFeed, Chat, PlayCircle,Group,Bookmarks,HelpOutline,WorkOutline, Event,School} from "@mui/icons-material"
+import { AuthContext } from '../../context/AuthContext'
+import { Link } from 'react-router-dom';
 const Sidebar = () => {
+  const api = useAxios()
+  const {user} = useContext(AuthContext)
+  const [friends, setFriends] = useState([])
+  useEffect(() => {
+    const getFriends = async () => {
+      try{
+        const res = await api.get("/users/friends/"+ user._id)
+        setFriends(res.data)
+      }catch(err){
+        console.log(err)
+      }
+    }
+    getFriends()
+  },[user])
+
   return (
 
     <div className='sidebar'>
@@ -14,8 +31,10 @@ const Sidebar = () => {
             <span className="sidebarListItemText">Feed</span>
           </li>
           <li className="sidebarListItem">
+          <Link to={"/messenger"} style={{textDecoration: "none", color: "black"}}>
             <Chat className="sidebarIcon"/>
             <span className="sidebarListItemText">Chat</span>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <PlayCircle className="sidebarIcon"/>
@@ -49,8 +68,10 @@ const Sidebar = () => {
         <button className="sidebarButton">Show More</button>
         <hr className='sidebarHr'/>
         <ul className="sidebarFriendList">
-         {Users.map((u) => (
+         {friends.map((u) => (
+            <Link to={"/profile/" + u.username} style={{textDecoration: "none", color: "black"}}>
           <CloseFriend key={u.id} user={u}/>
+          </Link>
          ))}
         </ul>
       </div>

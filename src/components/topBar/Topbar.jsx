@@ -14,6 +14,8 @@ const Topbar = () => {
       api.post("/auth/logout", {
         token : user.refreshToken
       });
+      localStorage.clear()
+      window.location.reload()
     }catch(err){
       console.log(err)
     }

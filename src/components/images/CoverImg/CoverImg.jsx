@@ -53,7 +53,8 @@ const CoverImg = ({user}) => {
                        }}/> 
                 </div>
             )}
-  {user.username === currentUser.username &&( <label htmlFor='coverImg' className='btn-changeProfilePic'>
+  {user.username === currentUser.username &&(
+    <label htmlFor='coverImg' >
     {disabledButton 
     ? <div className="btn-changeProfileCover fade-out" >
     <ChangeCircleIcon style={{paddingRight: "5px", paddingLeft: "0px"}}/>

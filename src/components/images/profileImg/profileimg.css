@@ -8,7 +8,7 @@
     left: 30px;
     margin: auto;
     border: 4px solid white;
-    z-index: 998;
+    z-index: 997;
 }
 .btn-changeProfilePic{
     position: absolute;
@@ -36,9 +36,10 @@
     left: 30px;
     margin: auto;
     border: 4px solid white;
-    z-index: 999;
+    z-index: 997;
 }
-.btn-submit-pp{
+.btn-submit-pp{ 
+    opacity: 0;
     position: absolute;
     top: 150px;
     left: 140px;
@@ -54,6 +55,7 @@
     z-index: 999;
 }
 .btn-cancel-pp{
+    opacity: 0;
     position: absolute;
     top: 270px;
     left: 140px;
@@ -65,7 +67,7 @@
     align-items: center;
     cursor: pointer;
     border: 3px solid white;
-    animation: scale-appear 1s ease 0s 1 normal forwards d;
+    animation: scale-appear 1s ease 0s 1 normal forwards;
     z-index: 999;
     
 }
@@ -78,19 +80,29 @@
 
 @keyframes scale-appear {
 	0% {
-		transform: scale(1.3);
+		transform: scale(0.3);
+        opacity: 0;
 	}
+    50%{
+        opacity: 1;
+    }
 
 	100% {
 		transform: scale(1);
+        opacity: 1;
 	}
 }
 @keyframes scale-re-appear {
 	0% {
 		transform: scale(0);
+        opacity: 0;
 	}
+    50%{
+        opacity: 1;
+    }
 
 	100% {
+        opacity: 1;
 		transform: scale(1);
 	}
 }

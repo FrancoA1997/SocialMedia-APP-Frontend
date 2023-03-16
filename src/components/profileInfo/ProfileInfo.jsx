@@ -18,9 +18,9 @@ const ProfileInfo = ({ user }) => {
         <>
          {isUpdating 
          ?   <>
-             <input type="text" className='rightbarInfoItem' placeholder={user.city} />
-             <input type="text"  className='rightbarInfoItem' placeholder={user.from} />
-             <Select  className='rightbarInfoItem' options={selectRelationship}/>
+             <input type="text" className='inputInfo' placeholder={user.city} />
+             <input type="text"  className='inputInfo2' placeholder={user.from} />
+             <Select  className='inputSelect' options={selectRelationship}/>
              <div className='optionsButtons'>
              <div className="btn-accept">
                 <CheckIcon style={{paddingRight: "5px", marginRight: "5px"}}/>

@@ -57,17 +57,18 @@ const ProfileImg = ({user}) => {
         setDisabledButton(false);}}/> 
                 </div>
             )}
-   {user.username === currentUser.username && (<label htmlFor='profilePicture' className='btn-changeProfilePic'>
-    {disabledButton 
-    ?  <PhotoCamera className='disabled' />
-    :  <PhotoCamera />}
+   {user.username === currentUser.username && (
+   <label htmlFor='profilePicture' className='btn-changeProfilePic'>
+     <PhotoCamera />
        <input style={{display:"none"}}
         type="file"
         id="profilePicture"
         accept='.png, .jpeg, .jpg'
         onChange={(e) => setProfilePicture(e.target.files[0])} />
        
-    </label>)}
+    </label>
+    )
+    }
     </form>
   )
 }

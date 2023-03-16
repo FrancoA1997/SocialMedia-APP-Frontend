@@ -5,7 +5,9 @@
     position: sticky;
     top: 50px;
     z-index: 0;
+   
   }
+  
   
   ::-webkit-scrollbar {
     width: 5px;

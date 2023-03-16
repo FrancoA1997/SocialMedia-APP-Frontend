@@ -8,6 +8,7 @@ const ChatOnline = ({onlineUsers ,setCurrentChat }) => {
     const [friends, setFriends] = useState([]);
     const [onlineFriends, setOnlineFriends] = useState([]);
     const api = useAxios()
+    
     const handleClick = async (user) =>{
       try{
         const res = await api.get(`/conversation/find/${user._id}/${currentUser._id}`)

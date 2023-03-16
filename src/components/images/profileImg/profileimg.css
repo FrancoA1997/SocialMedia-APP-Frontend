@@ -1,0 +1,90 @@
+
+
+
+.profileUserImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    margin: auto;
+    border: 4px solid white;
+    z-index: 998;
+}
+.btn-changeProfilePic{
+    position: absolute;
+    top: 150px;
+    left: 140px;
+    background: #1872f2;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 3px solid white;
+    z-index: 998;
+}
+
+.profileUserImgPreview{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    margin: auto;
+    border: 4px solid white;
+    z-index: 999;
+}
+.btn-submit-pp{
+    position: absolute;
+    top: 150px;
+    left: 140px;
+    background: #0cc95e;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 3px solid white;
+    z-index: 999;
+}
+.btn-cancel-pp{
+    position: absolute;
+    top: 270px;
+    left: 140px;
+    background: #c9280c;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 3px solid white;
+    z-index: 999;
+}
+.btn-styless{
+    border: 0;
+    
+}
+
+.disabled{
+    display: none;
+}
+
+@keyframes myAnim {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+}

@@ -1,12 +1,15 @@
 import React from 'react'
 import useAxios from '../../api/useAxios'
 import "./coverimg.css"
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import { AuthContext } from '../../../context/AuthContext';
 const CoverImg = ({user}) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const api = useAxios()
+    const {user : currentUser} = useContext(AuthContext)
     const [disabledButton, setDisabledButton] = useState(false)
     const [coverImg, setCoverImg] = useState(null)
     const submitCover = async (e) =>{
@@ -50,16 +53,22 @@ const CoverImg = ({user}) => {
                        }}/> 
                 </div>
             )}
-    <label htmlFor='coverImg' className='btn-changeProfilePic'>
+  {user.username === currentUser.username &&( <label htmlFor='coverImg' className='btn-changeProfilePic'>
     {disabledButton 
-    ? <span className='disabled' ></span> 
-    : <span className='btn-changeProfileCover' onClick={() => setDisabledButton(true)}>Change cover</span>} 
+    ? <div className="btn-changeProfileCover fade-out" >
+    <ChangeCircleIcon style={{paddingRight: "5px", paddingLeft: "0px"}}/>
+    <p>cover</p>
+    </div>
+    : <div className="btn-changeProfileCover" onClick={() => setDisabledButton(true)}>
+        <ChangeCircleIcon style={{paddingRight: "5px", paddingLeft: "0px"}}/>
+        <p>cover</p>
+        </div>} 
        <input style={{display:"none"}}
         type="file"
         id="coverImg"
         accept='.png, .jpeg, .jpg'
         onChange={(e) => setCoverImg(e.target.files[0])} />
-    </label>
+    </label>)}
     </div>
     </form>
     </>

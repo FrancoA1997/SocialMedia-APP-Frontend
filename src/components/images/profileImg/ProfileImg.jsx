@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './profileimg.css'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useState } from 'react';
 import useAxios from '../../api/useAxios';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import { AuthContext } from '../../../context/AuthContext';
 
 
 const ProfileImg = ({user}) => {
     const [profilePicture, setProfilePicture] = useState(null)
     const [disabledButton, setDisabledButton] = useState(false)
+    const {user : currentUser} = useContext(AuthContext)
     const api = useAxios()
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const submitProfile = async (e) =>{
@@ -55,7 +57,7 @@ const ProfileImg = ({user}) => {
         setDisabledButton(false);}}/> 
                 </div>
             )}
-    <label htmlFor='profilePicture' className='btn-changeProfilePic'>
+   {user.username === currentUser.username && (<label htmlFor='profilePicture' className='btn-changeProfilePic'>
     {disabledButton 
     ?  <PhotoCamera className='disabled' />
     :  <PhotoCamera />}
@@ -65,7 +67,7 @@ const ProfileImg = ({user}) => {
         accept='.png, .jpeg, .jpg'
         onChange={(e) => setProfilePicture(e.target.files[0])} />
        
-    </label>
+    </label>)}
     </form>
   )
 }

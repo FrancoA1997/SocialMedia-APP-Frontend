@@ -1,18 +1,21 @@
 .btn-changeProfileCover{
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     position: absolute;
-    top: 75px;
-    left: 480px;
+    top: 80px;
+    text-transform: uppercase;
+    left: 560px;
     background: #1872f2;
     color: white;
     border-radius: 5px;
-    padding: 0px 40px;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
+    padding: 5px 20px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     border: 3px solid #3a8cff;
+    animation: fade-in 1s ease 0s 1 normal forwards!important;
     z-index: 998;
 }
 .coverContainer{
@@ -41,6 +44,7 @@
     font-weight: 500;
     cursor: pointer;
     border: 2.5px solid white;
+    animation: fade-in 1s ease 0s 1 normal forwards;
     z-index: 999;
 }
 
@@ -64,16 +68,41 @@
     align-items: center;
     font-size: 16px;
     font-weight: 500;
+    opacity: 0;
     cursor: pointer;
     border: 2.5px solid white;
+    animation: fade-in 1s ease 0.5s 1 normal forwards;
     z-index: 999;
 }
 
 .btn-styless{
     border: 0;
-    
 }
 
-.disabled{
-    display: none;
+.fade-out{
+    animation: fade-out 1s ease 0s 1 normal forwards!important;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
 }

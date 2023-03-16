@@ -1,6 +1,3 @@
-
-
-
 .profileUserImg{
     width: 150px;
     height: 150px;
@@ -25,6 +22,7 @@
     align-items: center;
     cursor: pointer;
     border: 3px solid white;
+    animation: scale-re-appear 0.5s ease 0s 1 normal forwards;
     z-index: 998;
 }
 
@@ -52,6 +50,7 @@
     align-items: center;
     cursor: pointer;
     border: 3px solid white;
+    animation: scale-appear 1s ease 0s 1 normal forwards;
     z-index: 999;
 }
 .btn-cancel-pp{
@@ -66,25 +65,32 @@
     align-items: center;
     cursor: pointer;
     border: 3px solid white;
+    animation: scale-appear 1s ease 0s 1 normal forwards d;
     z-index: 999;
+    
 }
 .btn-styless{
     border: 0;
     
 }
 
-.disabled{
-    display: none;
-}
 
-@keyframes myAnim {
+
+@keyframes scale-appear {
 	0% {
-		opacity: 1;
-		transform: translateX(0);
+		transform: scale(1.3);
 	}
 
 	100% {
-		opacity: 0;
-		transform: translateX(250px);
+		transform: scale(1);
+	}
+}
+@keyframes scale-re-appear {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
 	}
 }

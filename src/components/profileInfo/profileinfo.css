@@ -1,0 +1,82 @@
+.rightbarTitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.rightbarInfo{
+    margin-bottom: 15px;
+}
+
+.rightbarInfoItem{
+    margin-bottom: 10px;
+}
+.rightbarInfoKey{
+    font-weight: 500;
+    margin-right: 15px;
+    color: #2c2c2c;
+}
+
+.rightbarInfoValue{
+    font-weight: 300;
+}
+.optionsButtons{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    
+    
+}
+
+.btn-changeInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: #1872f2;
+    color: white;
+    border-radius: 5px;
+    width: 20%;
+    padding: 3px 5px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 3px solid #3a8cff;
+    z-index: 998;
+}
+
+.btn-accept{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    background: #19b35c;
+    color: white;
+    border-radius: 5px;
+    width: 20%;
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 3px solid white;
+    z-index: 998;
+}
+
+.btn-cancel-toggle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    background: #c9280c;
+    color: white;
+    border-radius: 5px;
+    width: 22%;
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 3px solid white;
+    z-index: 998;
+}

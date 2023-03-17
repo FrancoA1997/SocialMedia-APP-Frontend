@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
 import { Add, Remove } from '@mui/icons-material'
-import { Users } from '../../dummydata'
+import React, { useContext, useState, useEffect, useRef } from 'react'
+import { AuthContext } from '../../context/AuthContext'
+import useAxios from '../api/useAxios'
 import Online from '../Online/Online'
 import ProfileInfo from '../profileInfo/ProfileInfo'
-import useAxios from '../api/useAxios'
 import "./rightbar.css"
 
 const Rightbar = ({user}) => {
@@ -14,6 +13,8 @@ const Rightbar = ({user}) => {
   const [friends, setFriends ] = useState([])
   const {user: currentUser, dispatch} = useContext(AuthContext);
   const [followed, setFollowed] = useState(false);
+
+  
 
    ///Sets if the current user is following the current profile 
   useEffect(() => {
@@ -80,14 +81,11 @@ const Rightbar = ({user}) => {
           <span className="birthdayText"><b>Pola Foster</b> and <b>3 other friends</b> have a birthday today!</span>
         </div>
         <img src={`${PF}ad.png`} alt="" className="rightbarAd" />
-        <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          
-          {friends.map((u) =>(
-            <Link to={"/profile/" + u.username} style={{textDecoration: "none"}}>
-            <Online key={u.id} user={u}/>
-            </Link>
-          ))}
+        <div>Online Friends</div>
+          <Link to="/messenger" style={{textDecoration: "none", color: "black"}}>
+          <Online />
+          </Link>
         </ul>
     </>
     )
@@ -104,7 +102,7 @@ const Rightbar = ({user}) => {
     )}
     <ProfileInfo user={user}/>
     
-    <h4 className='rightbarTitle'>User friends</h4>
+    <h4 className='rightbarTitleContacts'>Contacts:</h4>
       <div className="rightbarFollowings">
         {friends.map((friend) => (
             <Link to={"/profile/" + friend.username} style={{textDecoration: "none"}}>

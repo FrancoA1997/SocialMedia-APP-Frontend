@@ -51,7 +51,7 @@ cursor: pointer;
     flex: 4;
 display: flex;
 align-items: center;
-justify-content: space-around;
+justify-content: flex-end;
 color: white;
 }
 .topbarLink{
@@ -63,7 +63,7 @@ color: white;
     display: flex;
 }
 .topbarIconItem{
-    margin-right: 15px;
+    margin-left: 15px;
     cursor: pointer;
     position: relative;
 }
@@ -93,4 +93,6 @@ color: white;
 .topbarImg{
     width: 32px;
     height: 32px;
+    margin-left: 25px;
+    margin-right: 30px;
 }

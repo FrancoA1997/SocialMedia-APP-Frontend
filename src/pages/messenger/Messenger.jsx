@@ -22,7 +22,8 @@ const Messenger = () => {
 
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
-    socket.current.on("getMessage", data => {
+    socket.current.on("getMessage", (data) => {
+      console.log(data, "pepe")
       setArrivalmessage({
         sender: data.senderId,
         text: data.text,
@@ -31,10 +32,11 @@ const Messenger = () => {
     });
   },[]);
   
+  
   useEffect(() => {
     arrivalmessage && currentChat?.members.includes(arrivalmessage.sender) &&
-    setMessages((prev) => [...messages, arrivalmessage ])
-  },[arrivalmessage, currentChat, messages])
+    setMessages((prev) => [...prev, arrivalmessage ])
+  },[arrivalmessage, currentChat])
 
 
   useEffect(()=> {
@@ -61,6 +63,7 @@ const Messenger = () => {
     const getMessages = async () => {
       try{
         const res = await api.get("/message/"+ currentChat?._id)
+        
         setMessages(res.data)
       }catch(err){
         console.log(err)
@@ -76,7 +79,9 @@ const Messenger = () => {
       text: newMessages,
       conversationId: currentChat._id,
     };
+
     const receiverId = currentChat.members.find((m) => m !== user._id)
+
     socket.current.emit("sendMessage", {
       senderId: user._id,
       receiverId,

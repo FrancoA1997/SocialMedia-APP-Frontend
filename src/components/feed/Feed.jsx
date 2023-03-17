@@ -1,19 +1,16 @@
 import "./feed.css"
-import React, { useContext } from 'react'
+import React, { useContext, useRef,useState, useEffect } from 'react'
 import Share from '../share/Share'
 import Post from '../Post/Post'
-import { useState, useEffect } from 'react'
 import { AuthContext } from "../../context/AuthContext"
 import useAxios from '../api/useAxios'
 
 
 
 const Feed = ({username}) => {
-  const [posts, setPosts] = useState([]);
   const {user} = useContext(AuthContext)
+  const [posts, setPosts] = useState([]);
   const api = useAxios()
-  
- 
 
   useEffect( () =>{
     const fetchPost = async () =>{

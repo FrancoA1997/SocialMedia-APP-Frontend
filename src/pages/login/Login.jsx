@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 import CircularProgress from '@mui/material/CircularProgress';
+import { Link } from 'react-router-dom';
 const Login = () => {
     const logoBeggining = "</>";
     const email = useRef()
@@ -45,10 +46,11 @@ const Login = () => {
                     
                     <span className="loginForgot">Forgot password?</span>
 
-                    <button className="loginRegisterButton" disabled={isFetching} >{ 
-                    isFetching ? <CircularProgress color='inherit' size="20px"/> : "Create a new account"}
-                    </button>
+                    
                 </form>
+                <Link to="/register" className="loginRegisterButton">
+                    Create new account
+                </Link>
             </div>
         </div>
     </div>

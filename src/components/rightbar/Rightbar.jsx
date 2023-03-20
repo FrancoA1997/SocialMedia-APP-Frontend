@@ -44,7 +44,7 @@ const Rightbar = ({user}) => {
       }
     };
     user ? getProfileFriends() : getFeedFriends()
-  }, [user, currentUser])
+  }, [])
 
 // Function that handle following state on the client and server side
   const followHandle = async () =>{

@@ -41,6 +41,7 @@ const Share = () => {
             console.log(err);
         };
     }
+    const firstName = user.username.split(" ", 1);
 
   return (
     <div className='share'>
@@ -49,7 +50,7 @@ const Share = () => {
                <img className='shareProfileImg' src={user.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"} alt="" />
                <input 
                 className="shareInput" 
-                placeholder={"What's in your mind " + user.username + "?"} ref={desc}>
+                placeholder={"What's in your mind " + firstName + "?"} ref={desc}>
                     
                 </input>
             </div>

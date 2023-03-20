@@ -50,7 +50,7 @@ justify-content: center;
 .registerInput:focus{
     outline: none;
 }
-.registerButton{
+.registerButton-register{
     height: 50px;
     border-radius: 10px;
     border: none;
@@ -64,15 +64,22 @@ justify-content: center;
 
 
 
-.loginButton{
+.loginButton-register{
     height: 50px;
     border-radius: 10px;
     border: none;
+    margin-top: 15px;
     font-style: 20px;
     font-weight: 500;
     background-color: #1775ee;
     color:white;
     font-size: 20px;
     font-weight: 500;
-    cursor: pointer
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    align-self: center;
 }

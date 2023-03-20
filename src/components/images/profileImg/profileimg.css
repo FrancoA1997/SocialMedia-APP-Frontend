@@ -7,8 +7,9 @@
     top: 150px;
     left: 30px;
     margin: auto;
-    border: 4px solid white;
+    border: 3px solid #1872f2;
     z-index: 997;
+    
 }
 .btn-changeProfilePic{
     position: absolute;

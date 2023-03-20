@@ -5,10 +5,8 @@ import React, { useContext, useRef, useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import useAxios from '../api/useAxios';
-
-import CircularProgress from '@mui/material/CircularProgress';
 import './profileinfo.css'
-import { useEffect } from 'react';
+
 const ProfileInfo = ({ user }) => {
     const [isUpdating, setIsUpdating] = useState(false);
     const [isUndo, setIsUndo] = useState(false)
@@ -18,15 +16,6 @@ const ProfileInfo = ({ user }) => {
     const city = useRef()
     const country = useRef()
     const relationship = useRef()
-
-    
-   
-     setTimeout(function(){
-     setIsLoaded(true)
-     }, 1000);
-        
-        
-   
 
     const selectRelationship = [
         { value: 1, label: "Single" },
@@ -88,8 +77,7 @@ const ProfileInfo = ({ user }) => {
                 </>
                 :
                 <>
-                   {isLoaded 
-                   ? <>
+                   
                    <h4 className='rightbarTitle'>User information</h4><div className="rightbarInfo">
                         <div className="rightbarInfoItem1">
                             <span className="rightbarInfoKey">City:</span>
@@ -110,10 +98,6 @@ const ProfileInfo = ({ user }) => {
                             </span>
                         </div>
                     </div>
-                    </>
-:
-<CircularProgress style={{marginLeft: "20px", marginTop: "20px"}} size={"20px"}/>
-} 
                     {user.username === currentUser.username && (
                         <div className="btn-changeInfo"
                          onClick={() => {

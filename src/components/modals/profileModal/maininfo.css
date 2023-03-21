@@ -1,0 +1,79 @@
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:  rgb(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-container{
+    width: 500px;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: none;
+}
+
+.modal-top{
+    height: 30px;
+    
+    display: flex;
+    justify-content: start;
+}
+.title{
+    color: #3a8cff;
+    font-size: 20px;
+    font-weight: 700;
+    
+}
+
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px; 
+
+}
+.input-Title{
+    margin-bottom: 5px;
+    color: rgb(78, 78, 78);
+    margin-left: 0px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.changeUsername{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(168, 168, 168);
+    padding-left: 5px;
+    width: 50%;
+}
+
+.changeUsername:focus{
+    outline: none;
+}
+
+.text-area-desc{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(168, 168, 168);
+    padding-left: 5px;
+}
+.text-area-desc:focus{
+    outline: none;
+}
+
+.modal-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
+}

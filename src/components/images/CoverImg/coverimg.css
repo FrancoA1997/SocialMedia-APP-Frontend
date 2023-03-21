@@ -106,3 +106,28 @@
 		transform: translateX(50px);
 	}
 }
+
+@media (min-width : 1320px ) {
+    .btn-changeProfileCover{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 230px;
+        text-transform: uppercase;
+        left: 890px;
+        background: #1872f2;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 3px solid #3a8cff;
+        animation: fade-in 1s ease 0s 1 normal forwards!important;
+        z-index: 998;
+    }
+    
+}
+    

@@ -26,7 +26,7 @@
     align-items: flex-start;
     justify-content: center;
     margin-left: 200px;
-   
+   position: relative;
 }
 
 .profileInfoName{
@@ -40,4 +40,19 @@
 
 .profileBottom{
     display: flex;
+}
+
+.updateButton{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: rgb(148, 148, 148);
+    color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 3px 3px;
+    position: absolute;
+    top: 0;
+    left: 200px;
 }

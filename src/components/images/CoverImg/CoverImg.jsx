@@ -42,7 +42,7 @@ const CoverImg = ({user}) => {
     <>
     <form onSubmit={submitCover}>
     <div className='coverContainer'>
-    <img className='profileCoverImg' src={user.coverPicture ? PF + user.coverPicture : PF + "post/3.jpeg"} alt="" />
+    <img className='profileCoverImg' src={user.coverPicture ? PF + user.coverPicture : PF + "/person/noCover.png"} alt="" />
     {coverImg && (
                 <div className='imgWrapper' >
                     <img className='profileCoverImg-preview' src={URL.createObjectURL(coverImg)} alt="" />

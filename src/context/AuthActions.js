@@ -30,3 +30,10 @@ export const refreshToken = (token, refreshToken) =>({
     payload: token,
     refreshToken,
 });
+
+export const updateCurrentUser = (newUsername, newDescription) => ({
+    type: "REFRESH_USER",
+    payload:
+     newUsername,
+     newDescription,
+});

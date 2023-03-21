@@ -28,7 +28,7 @@ const ProfileInfo = ({ user }) => {
         e.preventDefault()
         const updatedUserInfo = {
             userId: user._id,
-            password: user.passowrd,
+            password: user.password,
             city: (city.current.value ? city.current.value : user.city),
             from: (country.current.value ? country.current.value : user.from),
             relationship: (relationship.current.value ? relationship.current.value : user.relationship)
@@ -55,10 +55,12 @@ const ProfileInfo = ({ user }) => {
 
                             {isUndo
 
-                                ? <><div className="btn-accept" >
+                                ? <>
+                                <div className="btn-accept" >
                                     <button type='submit' className='btn-styless'> <CheckIcon style={{ paddingRight: "5px", marginRight: "5px" }} /></button>
                                     <p>Done!</p>
-                                </div><div className="btn-cancel-toggle" onClick={() => { setIsUpdating(false); setIsUndo(false) }}>
+                                </div>
+                                <div className="btn-cancel-toggle" onClick={() => { setIsUpdating(false); setIsUndo(false) }}>
                                         <ClearIcon style={{ paddingRight: "5px" }}  />
                                         <p>Cancel</p>
                                     </div></>

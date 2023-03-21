@@ -44,6 +44,15 @@ const AuthReducer =(state, action) => {
                                         refreshToken: action.payload.refreshToken,
                                     },
                                 }
+                                case "REFRESH_USER":
+                                    return {
+                                        ...state,
+                                        user:{
+                                            ...state.user,
+                                            username: action.payload.newUsername,
+                                            description: action.payload.newDescription,
+                                        },
+                                    }
                 default:
                     return state;
     }

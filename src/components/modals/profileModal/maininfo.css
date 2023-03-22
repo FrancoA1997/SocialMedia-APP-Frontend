@@ -4,11 +4,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color:  rgb(0, 0, 0, .5);
+    background-color:  rgba(0, 0, 0, 0.659);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    animation: opacity-in 1s ease 0s 1 normal forwards!important;
 }
 
 .modal-container{
@@ -20,6 +21,8 @@
     padding: 20px;
     z-index: 1001;
     box-shadow: none;
+    animation: open-in 0.4s ease-in-out 0.5s 1 normal forwards;
+    transform: scaleY(0);
 }
 
 .modal-top{
@@ -32,27 +35,27 @@
     color: #3a8cff;
     font-size: 20px;
     font-weight: 700;
+    text-transform: uppercase;
     
 }
 
 .modal-content{
     display: flex;
     flex-direction: column;
-    padding: 20px 0px; 
-
 }
 .input-Title{
-    margin-bottom: 5px;
-    color: rgb(78, 78, 78);
-    margin-left: 0px;
-    font-size: 13px;
+    margin-bottom: 0px;
+    color: rgb(126, 126, 126);
+    margin-left: 5px;
+    font-size: 15px;
     font-weight: 700;
+  text-transform: uppercase;
 }
 
 .changeUsername{
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid rgb(168, 168, 168);
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border: 2px solid #1872f2;
     padding-left: 5px;
     width: 50%;
 }
@@ -63,8 +66,9 @@
 
 .text-area-desc{
     margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid rgb(168, 168, 168);
+    border-radius: 10px;
+    border: 2px solid #1872f2;
+    
     padding-left: 5px;
 }
 .text-area-desc:focus{
@@ -77,3 +81,81 @@
     justify-content: end;
     flex-direction: row;
 }
+
+.cancelButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    margin-top: 30px;
+    margin-left: 5px;
+    padding: 5px 5px;
+    background-color: #c9280c;
+    color: #ffF;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.confirmButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    margin-top: 30px;
+    margin-left: 5px;
+    padding: 5px 5px;
+    background-color: #19b35c;
+    color: #ffF;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@keyframes opacity-in {
+	0% {
+		opacity: 0.5;
+	
+	}
+
+	100% {
+		opacity: 1;
+		
+	}
+}
+@keyframes opacity-out {
+	0% {
+		opacity: 1;
+        
+	}
+
+	100% {
+		opacity: 0;
+		
+	}
+}
+@keyframes open-in {
+	0% {
+		transform: scaleY(0);
+	}
+
+	100% {
+		transform: scaleY(1);
+	}
+}
+@keyframes close {
+	0% {
+		transform: scaleY(1);
+        
+	}
+
+	100% {
+		transform: scaleY(0);
+        
+	}
+}
+

@@ -10,17 +10,13 @@ import { AuthContext } from '../../../context/AuthContext';
 
 const ProfileImg = ({user}) => {
     const [profilePicture, setProfilePicture] = useState(null)
-    const [disabledButton, setDisabledButton] = useState(false)
-    const {user : currentUser} = useContext(AuthContext)
+    const {user : currentUser, dispatch} = useContext(AuthContext)
     const api = useAxios()
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const submitProfile = async (e) =>{
       e.preventDefault()
 
-      function undo() {
-        setProfilePicture(null);
-        setDisabledButton(false)
-      }
+    
       
       const updatedUser  = {
               userId : user._id,
@@ -35,6 +31,12 @@ const ProfileImg = ({user}) => {
               updatedUser.profilePicture = fileName;
                  try{
                   await api.post("/upload" , data);
+                  dispatch({
+                    type:"UPDATE_PP",
+                    payload:{
+                      newImg: fileName,
+                    }
+                  })
                   window.location.reload();
               }catch(err){
                   console.log(err);
@@ -53,8 +55,7 @@ const ProfileImg = ({user}) => {
                 <div className='imgWrapper' >
                     <img className='profileUserImgPreview' src={URL.createObjectURL(profilePicture)} alt="" />
                     <button className="btn-styless" type="submit"><SendIcon className='btn-submit-pp' /></button>
-                    <DeleteIcon className='btn-cancel-pp' onClick={() => {setProfilePicture(null);
-        setDisabledButton(false);}}/> 
+                    <DeleteIcon className='btn-cancel-pp' onClick={() => {setProfilePicture(null);}}/> 
                 </div>
             )}
    {user.username === currentUser.username && (

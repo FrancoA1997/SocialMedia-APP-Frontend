@@ -8,18 +8,19 @@ import useAxios from '../api/useAxios';
 import './profileinfo.css'
 
 const ProfileInfo = ({ user }) => {
-    const [isUpdating, setIsUpdating] = useState(false);
+    const [isRightInfo, setIsRightInfo] = useState(false);
     const [isUndo, setIsUndo] = useState(false)
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [status, setStatus] = useState(null)
     const { user: currentUser } = useContext(AuthContext)
     const api = useAxios()
     const city = useRef()
     const country = useRef()
-    const relationship = useRef()
-
+    const onChangeSelect = (value)=>{
+        setStatus(value)
+    }
     const selectRelationship = [
-        { value: 1, label: "Single" },
-        { value: 2, label: "Married" }
+        { value: 1, label: "Unemployed" },
+        { value: 2, label: "Employed" }
     ]
 
 
@@ -31,11 +32,12 @@ const ProfileInfo = ({ user }) => {
             password: user.password,
             city: (city.current.value ? city.current.value : user.city),
             from: (country.current.value ? country.current.value : user.from),
-            relationship: (relationship.current.value ? relationship.current.value : user.relationship)
+            relationship: (status.value ? status.value : user.relationship)
         }
         try {
-            await api.put("/users/" + user._id, updatedUserInfo);
-            window.location.reload();
+            
+          await api.put("/users/" + user._id, updatedUserInfo);
+          window.location.reload();
         } catch (err) {
             console.log(err);
         };
@@ -45,22 +47,25 @@ const ProfileInfo = ({ user }) => {
 
     return (
         <>
-            {isUpdating
+            {isRightInfo
                 ? <>
                     <form onSubmit={infoHandler}>
                         <input type="text" className='inputInfo' ref={city} placeholder={"City: " + user.city} />
                         <input type="text" className='inputInfo2' ref={country} placeholder={"Country: " + user.from} />
-                        <Select className='inputSelect' placeholder="Relationship: " ref={relationship} options={selectRelationship} />
+                        <Select className='inputSelect' placeholder="Status: " value={status} onChange={onChangeSelect}  options={selectRelationship} />
                         <div className='optionsButtons'>
 
                             {isUndo
 
                                 ? <>
-                                <div className="btn-accept" >
-                                    <button type='submit' className='btn-styless'> <CheckIcon style={{ paddingRight: "5px", marginRight: "5px" }} /></button>
+                                
+                                    <button  className="btn-accept" type='submit'>
+                                    <CheckIcon style={{ paddingRight: "5px", marginRight: "5px" }} />
                                     <p>Done!</p>
-                                </div>
-                                <div className="btn-cancel-toggle" onClick={() => { setIsUpdating(false); setIsUndo(false) }}>
+                                    </button>
+                                    
+                               
+                                <div className="btn-cancel-toggle" onClick={() => { setIsRightInfo(false); setIsUndo(false) }}>
                                         <ClearIcon style={{ paddingRight: "5px" }}  />
                                         <p>Cancel</p>
                                     </div></>
@@ -90,12 +95,12 @@ const ProfileInfo = ({ user }) => {
                             <span className="rightbarInfoValue">{user.from}</span>
                         </div>
                         <div className="rightbarInfoItem3">
-                            <span className="rightbarInfoKey">Relationship:</span>
+                            <span className="rightbarInfoKey">Status:</span>
                             <span className="rightbarInfoValue">
                                 {user.relationship === 1
-                                    ? "Single"
+                                    ? "Unemployed"
                                     : user.relationship === 2
-                                        ? "Married"
+                                        ? "Employed"
                                         : "-"}
                             </span>
                         </div>
@@ -103,10 +108,10 @@ const ProfileInfo = ({ user }) => {
                     {user.username === currentUser.username && (
                         <div className="btn-changeInfo"
                          onClick={() => {
-                             setIsUpdating(true);
+                            setIsRightInfo(true);
                               setIsUndo(true)
                                }}>
-                            <SettingsIcon style={{ paddingRight: "5px" }} />
+                            <SettingsIcon style={{ paddingRight: "5px" }} fontSize='small'/>
                             <p>info</p>
                         </div>
                     )}

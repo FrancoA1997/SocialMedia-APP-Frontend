@@ -15,8 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Profile = () => {
   const [user, setUser] = useState({});
-  const [isUpdating, setIsUpdating] = useState(false)
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [isUpdatingMain, setIsUpdatingMain] = useState(false)
   const username = useParams().username;
   const api = useAxios();
   const { user: currentUser } = useContext(AuthContext);
@@ -28,7 +27,7 @@ const Profile = () => {
     };
     fetchUser();
   }, [username]);
-  console.log(isUpdating)
+  
   return (
     <>
     
@@ -44,13 +43,13 @@ const Profile = () => {
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>
               {user.username === currentUser.username && (
-                <div className="updateButton" onClick={() => setIsUpdating(!isUpdating)}>
-                  <SettingsIcon />
+                <div className="updateButton" onClick={() => setIsUpdatingMain(!isUpdatingMain)}>
+                  <SettingsIcon fontSize="small"/>
                 </div>
                 
               )}
               <span className="profileInfoDesc">{user.description}</span>
-              <MainInfo isUpdating={isUpdating} setIsUpdating={setIsUpdating}/>
+              <MainInfo isUpdatingMain={isUpdatingMain} setIsUpdatingMain={setIsUpdatingMain}/>
             
             </div>
           </div>

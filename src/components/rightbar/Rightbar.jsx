@@ -44,7 +44,7 @@ const Rightbar = ({user}) => {
       }
     };
     user ? getProfileFriends() : getFeedFriends()
-  }, [])
+  }, [user])
 
 // Function that handle following state on the client and server side
   const followHandle = async () =>{
@@ -100,12 +100,12 @@ const Rightbar = ({user}) => {
         {followed ? <Remove/> :  <Add/> }
         </button>
     )}
+
     <ProfileInfo user={user}/>
-    
     <h4 className='rightbarTitleContacts'>Contacts:</h4>
       <div className="rightbarFollowings">
         {friends.map((friend) => (
-            <Link to={"/profile/" + friend.username} style={{textDecoration: "none"}}>
+            <Link to={"/profile/" + friend.username} style={{textDecoration: "none", color: "black"}}>
           <div className="rightbarFollowing">
           <img src={friend.profilePicture ? PF + friend.profilePicture : PF +"person/noAvatar.png"} alt="" className="rightbarFollowingImg" />
         <span className="rightbarFollowingName">{friend.username}</span>

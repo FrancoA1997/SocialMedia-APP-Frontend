@@ -37,3 +37,8 @@ export const updateCurrentUser = (newUsername, newDescription) => ({
      newUsername,
      newDescription,
 });
+export const updateProfileImg = (newImg) => ({
+    type: "UPDATE_PP",
+    payload: newImg,
+     
+});

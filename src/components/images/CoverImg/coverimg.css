@@ -6,7 +6,7 @@
     position: absolute;
     top: 230px;
     text-transform: uppercase;
-    left: 660px;
+    left: 720px;
     background: #1872f2;
     color: white;
     border-radius: 5px;
@@ -107,7 +107,7 @@
 	}
 }
 
-@media (min-width : 1320px ) {
+@media (min-width : 1500px ) {
     .btn-changeProfileCover{
         display: flex;
         flex-direction: row;
@@ -116,7 +116,7 @@
         position: absolute;
         top: 230px;
         text-transform: uppercase;
-        left: 890px;
+        left: 985px;
         background: #1872f2;
         color: white;
         border-radius: 5px;

@@ -22,7 +22,7 @@ function App()  {
         <Routes>
         <Route
          path='/'
-         element={user ? <Home/> : <Register/>}
+         element={user ? <Home/> : <Login/>}
          />
          <Route
          path='/login'
@@ -38,7 +38,7 @@ function App()  {
          />
          <Route
          path='/profile/:username'
-         element={<Profile/>}
+         element={user ? <Profile/>  : <Login/>}
          />
         </Routes>
         </BrowserRouter>

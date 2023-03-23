@@ -1,23 +1,25 @@
-.btn-changeProfileCover{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    top: 230px;
-    text-transform: uppercase;
-    left: 720px;
-    background: #1872f2;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border: 3px solid #3a8cff;
-    animation: fade-in 1s ease 0s 1 normal forwards!important;
-    z-index: 998;
-}
+
+    .btn-changeProfileCover{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 230px;
+        text-transform: uppercase;
+        left: 985px;
+        background: #1872f2;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 3px solid #3a8cff;
+        animation: fade-in 1s ease 0s 1 normal forwards!important;
+        z-index: 998;
+    }
+
 .coverContainer{
    
     position: relative;
@@ -30,13 +32,22 @@
     height: 250px;
 
 }
+
+
+.profileCoverImg-preview{
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    object-fit: cover;
+    
+}
 .btn-submit{
     position: absolute;
     top: 225px;
-    left: 620px;
+    right: 470px;
     background: #19b35c;
     color: white;
-    border-radius: 10%;
+    border-radius: 5px;
     padding: 5px 10px;
     display: flex;
     align-items: center;
@@ -48,21 +59,13 @@
     z-index: 999;
 }
 
-
-.profileCoverImg-preview{
-    width: 100%;
-    height: 250px;
-    position: absolute;
-    object-fit: cover;
-    
-}
 .btn-cancel{
     position: absolute;
     top: 225px;
-    left: 692px;
+    right: 340px;
     background: #c9280c;
     color: white;
-    border-radius: 10%;
+    border-radius: 5px;
     padding: 5px 10px;
     display: flex;
     align-items: center;
@@ -70,7 +73,7 @@
     font-weight: 500;
     opacity: 0;
     cursor: pointer;
-    border: 2.5px solid white;
+    border: 2.5px solid rgb(255, 255, 255);
     animation: fade-in 1s ease 0.5s 1 normal forwards;
     z-index: 999;
 }
@@ -107,7 +110,7 @@
 	}
 }
 
-@media (min-width : 1500px ) {
+@media (max-width : 1500px ) {
     .btn-changeProfileCover{
         display: flex;
         flex-direction: row;
@@ -116,7 +119,7 @@
         position: absolute;
         top: 230px;
         text-transform: uppercase;
-        left: 985px;
+        left: 720px;
         background: #1872f2;
         color: white;
         border-radius: 5px;
@@ -128,6 +131,41 @@
         animation: fade-in 1s ease 0s 1 normal forwards!important;
         z-index: 998;
     }
+    .btn-submit{
+        position: absolute;
+        top: 225px;
+        left: 620px;
+        background: #19b35c;
+        color: white;
+        border-radius: 10%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 2.5px solid white;
+        animation: fade-in 1s ease 0s 1 normal forwards;
+        z-index: 999;
+    }
     
+    .btn-cancel{
+        position: absolute;
+        top: 225px;
+        left: 692px;
+        background: #c9280c;
+        color: white;
+        border-radius: 10%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 500;
+        opacity: 0;
+        cursor: pointer;
+        border: 2.5px solid white;
+        animation: fade-in 1s ease 0.5s 1 normal forwards;
+        z-index: 999;
+    }
 }
     

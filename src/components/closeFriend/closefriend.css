@@ -1,9 +1,9 @@
 .sidebarFriend {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     cursor: pointer;
-
+    padding: 5px 3px;
 }
 
 .sidebarFriendImg {
@@ -13,4 +13,17 @@
     object-fit: cover;
     margin-right: 10px;
     cursor: pointer;
+    border: 2px solid #1872f2;
+}
+
+.sidebarFriendName{
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.sidebarFriend:hover{
+    background-color: rgb(222, 222, 222);
+    border-radius: 10px;
+   
 }

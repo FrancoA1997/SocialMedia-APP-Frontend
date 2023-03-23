@@ -1,19 +1,27 @@
+.rightbarFriendList{
+    display: flex;
+    flex-direction: column;
+    
+}
 .rightbarFriend{
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    padding: 0px 3px;
+    max-width: 300px;
+    cursor: pointer;
    }
    
    .rightbarProfileImgContainer{
     margin-right: 10px;
     position: relative;   
-    margin-top: 20px;
+    margin-top: 10px;
    }
    .rightbarProfileImg{
        width: 40px;
        height: 40px;
        border-radius: 50%;
        object-fit: cover;
+       border: 2px solid limegreen ;
    }
    .rightbarOnline{
        width: 12px;
@@ -30,3 +38,8 @@
    font-weight: 500;
    margin-top: 30px;
    }
+   .rightbarFriend:hover{
+    background-color: rgb(222, 222, 222);
+    border-radius: 10px;
+   
+}

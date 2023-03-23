@@ -39,17 +39,20 @@ const Online = ({}) => {
   },[onlineUsers]) 
 
   return (
-    <li className="rightbarFriend">
-
+    <div className="rightbarFriendList">
+    
       {onlineFriends.map((friend) => ( 
         <>
-            <div className="rightbarProfileImgContainer">
+        <div className="rightbarFriend">
+          <div className="rightbarProfileImgContainer">
           <img src={friend.profilePicture ? PF + friend.profilePicture : PF + "person/noAvatar.png"} alt="" className="rightbarProfileImg" />
           <span className="rightbarOnline"></span>
         </div><span className="rightbarUsername">{friend.username}</span>
+        </div>
         </>
             ))}
-          </li>
+         
+          </div>
   )
 }
 

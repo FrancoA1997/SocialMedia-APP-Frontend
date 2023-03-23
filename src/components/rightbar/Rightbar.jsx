@@ -29,42 +29,34 @@ const Rightbar = ({user}) => {
   useEffect(() => {
     const getProfileFriends = async () => {
       try{
-        const friendList = await api.get("/users/friends/" + user?._id);
+        const friendList = await api.get(`/users/friends/${user ? user._id : currentUser._id}`);
         setFriends(friendList.data);
       }catch(err){
         console.log("No user yet to be fetched")
       }
     };
-    const getFeedFriends = async () => {
-      try{
-        const friendList = await api.get("/users/friends/" + currentUser?._id);
-        setFriends(friendList.data);
-      }catch(err){
-        console.log("No user yet to be fetched")
-      }
-    };
-    user ? getProfileFriends() : getFeedFriends()
+   getProfileFriends()
   }, [user])
 
 // Function that handle following state on the client and server side
   const followHandle = async () =>{
-    try{
-      if(followed){
-        await api.put("/users/"+user._id+"/unfollow", {
-          userId: currentUser._id
-        });
-        dispatch({
-          type: "UNFOLLOW",
-          payload: user._id
+      try{
+        if(followed){
+          await api.put("/users/"+user._id+"/unfollow", {
+            userId: currentUser._id
+          });
+          dispatch({
+            type: "UNFOLLOW",
+            payload: user._id
 
-        });
-      }else{
-        await api.put("/users/"+user._id+"/follow",  {
-          userId: currentUser._id
-        });
-        dispatch({
-          type: "FOLLOW",
-          payload: user._id
+          });
+        }else{
+          await api.put("/users/"+user._id+"/follow",  {
+            userId: currentUser._id
+          });
+          dispatch({
+            type: "FOLLOW",
+            payload: user._id
         });
       }
     }catch(err){
@@ -78,15 +70,15 @@ const Rightbar = ({user}) => {
     <>
        <div className="birthdayContainer">
           <img className='birthdayImg' src={`${PF}gift.png`} alt="" />
-          <span className="birthdayText"><b>Pola Foster</b> and <b>3 other friends</b> have a birthday today!</span>
+          <span className="birthdayText"><b>Pablo Martínez</b> and <b>3 other friends</b> have a birthday today!</span>
         </div>
         <img src={`${PF}ad.png`} alt="" className="rightbarAd" />
-        <ul className="rightbarFriendList">
+       
         <div>Online Friends</div>
           <Link to="/messenger" style={{textDecoration: "none", color: "black"}}>
           <Online />
           </Link>
-        </ul>
+        
     </>
     )
   }
@@ -97,7 +89,7 @@ const Rightbar = ({user}) => {
     {user.username !== currentUser.username && (
       <button className='rightbarFollowButton' onClick={followHandle}>
         {followed ? "Unfollow" : "Follow" }
-        {followed ? <Remove/> :  <Add/> }
+        {followed ? <Remove/>  :  <Add/> }
         </button>
     )}
 

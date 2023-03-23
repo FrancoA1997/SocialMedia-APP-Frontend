@@ -46,11 +46,11 @@ const CoverImg = ({user}) => {
     {coverImg && (
                 <div className='imgWrapper' >
                     <img className='profileCoverImg-preview' src={URL.createObjectURL(coverImg)} alt="" />
-                    <button className="btn-styless" type="submit"><SendIcon className='btn-submit' /></button>
-                    <DeleteIcon className='btn-cancel' onClick={() => {
+                    <button className='btn-submit' type="submit"><SendIcon style={{paddingRight: "5px"}} />Send</button>
+                    <button className='btn-cancel' onClick={() => {
                       setCoverImg(null);
                       setDisabledButton(false)
-                       }}/> 
+                       }}><DeleteIcon style={{paddingRight: "5px"}} /> Cancel</button>
                 </div>
             )}
   {user.username === currentUser.username &&(

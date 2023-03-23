@@ -13,6 +13,7 @@ const Register = () => {
         e.preventDefault();
         if(passwordAgain.current.value !== password.current.value){
             password.current.setCustomValidity("Passwords don't match!")
+            
         } else {
 
             const user = {
